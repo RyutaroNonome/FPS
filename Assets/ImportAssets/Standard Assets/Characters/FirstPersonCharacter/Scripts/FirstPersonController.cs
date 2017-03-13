@@ -11,8 +11,16 @@ namespace UnityStandardAssets.Characters.FirstPerson
     public class FirstPersonController : MonoBehaviour
     {
         [SerializeField] private bool m_IsWalking;
-        [SerializeField] private float m_WalkSpeed;
+
+		//しゃがむ機能
+		[SerializeField] private bool m_IsSquatting;
+
+		[SerializeField] private float m_WalkSpeed;
         [SerializeField] private float m_RunSpeed;
+
+		//しゃがむ機能
+		[SerializeField] private float m_SquatSpeed;
+
         [SerializeField] [Range(0f, 1f)] private float m_RunstepLenghten;
         [SerializeField] private float m_JumpSpeed;
         [SerializeField] private float m_StickToGroundForce;
@@ -27,6 +35,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         [SerializeField] private AudioClip[] m_FootstepSounds;    // an array of footstep sounds that will be randomly selected from.
         [SerializeField] private AudioClip m_JumpSound;           // the sound played when character leaves the ground.
         [SerializeField] private AudioClip m_LandSound;           // the sound played when character touches back on ground.
+
+		[SerializeField] private GameObject FirstPersonCharacter;
 
         private Camera m_Camera;
         private bool m_Jump;
@@ -81,6 +91,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
 
             m_PreviouslyGrounded = m_CharacterController.isGrounded;
+
         }
 
 
@@ -131,6 +142,12 @@ namespace UnityStandardAssets.Characters.FirstPerson
             UpdateCameraPosition(speed);
 
             m_MouseLook.UpdateCursorLock();
+
+			//しゃがむ機能
+			if (Input.GetKey(KeyCode.C)) {
+				FirstPersonCharacter.transform.position = new Vector3(transform.position.x, 4.5f, transform.position.z);
+//				GetInput(out speed);
+			}
         }
 
 
@@ -213,9 +230,20 @@ namespace UnityStandardAssets.Characters.FirstPerson
             // On standalone builds, walk/run speed is modified by a key press.
             // keep track of whether or not the character is walking or running
             m_IsWalking = !Input.GetKey(KeyCode.LeftShift);
+
+			//しゃがむ機能
+			m_IsSquatting = !Input.GetKey(KeyCode.C);
 #endif
             // set the desired speed to be walking or running
             speed = m_IsWalking ? m_WalkSpeed : m_RunSpeed;
+//			speed = m_IsSquatting ? m_WalkSpeed : m_SquatSpeed;
+
+
+			//しゃがむ機能
+			if (m_IsWalking && !m_IsSquatting) {
+				speed = m_IsSquatting ? m_WalkSpeed : m_SquatSpeed;
+			}
+
             m_Input = new Vector2(horizontal, vertical);
 
             // normalize input if it exceeds 1 in combined length:
@@ -238,6 +266,16 @@ namespace UnityStandardAssets.Characters.FirstPerson
         {
             m_MouseLook.LookRotation (transform, m_Camera.transform);
         }
+
+
+		//しゃがむ機能
+//		private void Squat()
+//		{
+//			if (Input.GetKey(KeyCode.C)) {
+//				FirstPersonCharacter.transform.position = new Vector3(transform.position.x, 4.5f, transform.position.z);
+//
+//			}
+//		}
 
 
         private void OnControllerColliderHit(ControllerColliderHit hit)
