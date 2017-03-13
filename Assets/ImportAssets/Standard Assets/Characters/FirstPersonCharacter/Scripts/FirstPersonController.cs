@@ -268,16 +268,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
         }
 
 
-		//しゃがむ機能
-//		private void Squat()
-//		{
-//			if (Input.GetKey(KeyCode.C)) {
-//				FirstPersonCharacter.transform.position = new Vector3(transform.position.x, 4.5f, transform.position.z);
-//
-//			}
-//		}
-
-
         private void OnControllerColliderHit(ControllerColliderHit hit)
         {
             Rigidbody body = hit.collider.attachedRigidbody;
