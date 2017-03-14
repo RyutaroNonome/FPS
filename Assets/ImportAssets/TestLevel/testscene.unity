@@ -5727,7 +5727,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22c45727c220948aeae5a2f8d6647cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Bullet: 3
+  Bullet: 10
   bulletBox: 15
 --- !u!1 &416047501
 GameObject:

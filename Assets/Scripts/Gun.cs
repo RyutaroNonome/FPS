@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Shoot : MonoBehaviour {
+public class Gun : MonoBehaviour {
 
 	public int Bullet;
 	public int bulletBox;
-
+	float coolTime;
 
 	// Use this for initialization
 	void Start () {
@@ -14,10 +14,14 @@ public class Shoot : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		coolTime -= Time.deltaTime;
 		if (Input.GetMouseButton(0) && Bullet != 0) {
-			print("左ボタンが押されている");
-			Bullet -= 1;
-			Debug.Log (Bullet);
+//			print("左ボタンが押されている");
+
+			//クールタイム機能
+			if (coolTime <= 0f){
+				Shoot();
+			}
 			if(Bullet == 0){
 				print ("なくなりました！");
 				return;
@@ -29,9 +33,11 @@ public class Shoot : MonoBehaviour {
 			bulletBox -= Bullet;
 			print (bulletBox);
 		}
-//
-//		if(bulletBox == 0){
-//			print ("なくなりました！");
-//		}
+	}
+
+	void Shoot () {
+		Bullet -= 1;
+		Debug.Log ("残弾数：" + Bullet);
+		coolTime = 0.5f;
 	}
 }
