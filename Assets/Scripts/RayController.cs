@@ -11,6 +11,12 @@ public class RayController : MonoBehaviour {
 	//パーティクル発生
 	GameObject cloneHitEffect, cloneMuzzleEffect;
 
+	[SerializeField] Animator anim;
+
+	void Start () {
+//		anim = GetComponents<Animator> ();
+	}
+
 	void Update () {
 		if(Input.GetMouseButtonDown(0)){
 			Ray ray = new Ray(transform.position, transform.forward);
@@ -25,10 +31,18 @@ public class RayController : MonoBehaviour {
 			if (Physics.Raycast(ray, out hit)) {
 				GameObject selectedObj = hit.collider.gameObject;
 
+				//ヒットしたオブジェクトの情報
+				print("name: " + selectedObj.name + selectedObj.transform.position);
+				if(selectedObj.name == "Enemy"){
+					anim.SetBool ("isFall", true);
+				}
+
 				cloneHitEffect = (GameObject)Instantiate (gunfireEffect, hit.point, Quaternion.identity);
 
 				//パーティクル削除
 				Destroy (cloneHitEffect, .5f);
+
+
 			}
 		}
 	}
