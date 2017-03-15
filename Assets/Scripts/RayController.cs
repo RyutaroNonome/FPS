@@ -5,6 +5,8 @@ public class RayController : MonoBehaviour {
 
 	//パーティクル
 	public GameObject gunfireEffect;
+	[SerializeField] GameObject usingGun;
+	Vector3 muzzlePoint;
 
 	void Update () {
 		if(Input.GetMouseButtonDown(0)){
@@ -13,14 +15,18 @@ public class RayController : MonoBehaviour {
 			RaycastHit hit = new RaycastHit();
 
 			if (Physics.Raycast(ray, out hit)) {
-				GameObject selectedObj = hit.collider.gameObject;             
-				print("name: " + selectedObj.name + selectedObj.transform.position);
+				GameObject selectedObj = hit.collider.gameObject;
 
 				//パーティクル発生
-				GameObject clone;
-				clone = (GameObject)Instantiate (gunfireEffect, hit.point, Quaternion.identity);
+				GameObject clone1, clone2;
+				muzzlePoint = new Vector3 (usingGun.transform.position.x, usingGun.transform.position.y , usingGun.transform.position.z + 1f);
+
+				clone1 = (GameObject)Instantiate (gunfireEffect, hit.point, Quaternion.identity);
+				clone2 = (GameObject)Instantiate (gunfireEffect, muzzlePoint, Quaternion.identity);
+
 				//パーティクル削除
-				Destroy (clone, .5f);
+				Destroy (clone1, .5f);
+				Destroy (clone2, .5f);
 			}
 		}
 	}
