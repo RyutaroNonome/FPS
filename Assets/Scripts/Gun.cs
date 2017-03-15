@@ -4,7 +4,7 @@ using System.Collections;
 public class Gun : MonoBehaviour {
 
 	//銃に入れれる弾の限界数
-	public int Bullet;
+	public int bullet;
 
 	//弾倉
 	public int bulletBox;
@@ -19,7 +19,7 @@ public class Gun : MonoBehaviour {
 
 	void Start () {
 		//残弾数 = 初期弾数
-		residualBullet = Bullet;
+		residualBullet = bullet;
 		audioSource = transform.GetComponent<AudioSource> ();
 	}
 	
@@ -28,7 +28,7 @@ public class Gun : MonoBehaviour {
 		coolTime -= Time.deltaTime;
 
 		//リロードする弾数
-		reloadBullet = Bullet - residualBullet;
+		reloadBullet = bullet - residualBullet;
 
 		//クリックしてショットする
 		if (Input.GetMouseButton(0) && residualBullet != 0) {
@@ -38,26 +38,26 @@ public class Gun : MonoBehaviour {
 			}
 		}
 
-		//リロード機能
-		if (Input.GetKeyDown (KeyCode.R) && residualBullet < Bullet) {
-			audioSource.PlayOneShot (reloadSound);
-			//残弾数 = 初期弾数
-			residualBullet += reloadBullet;
-			//リロードすると弾倉内弾数が減る
-			bulletBox -= reloadBullet;
-
-			print ("弾倉内弾数：" + bulletBox);
+		if (Input.GetKeyDown (KeyCode.R) && residualBullet < bullet) {
+			Reload ();
 		}
 	}
 
 	//ショット機能
 	void Shoot () {
 		residualBullet -= 1;
-		//後ほどUIで使用
-		Debug.Log ("残弾数：" + residualBullet);
 
 		//クールタイム設定
 		coolTime = 0.5f;
 		audioSource.PlayOneShot (gunfireSound);
+	}
+
+	//リロード機能
+	void Reload () {
+		audioSource.PlayOneShot (reloadSound);
+		//残弾数 = 初期弾数
+		residualBullet += reloadBullet;
+		//リロードすると弾倉内弾数が減る
+		bulletBox -= reloadBullet;		
 	}
 }
