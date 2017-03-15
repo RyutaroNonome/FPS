@@ -11,7 +11,6 @@ public class RayController : MonoBehaviour {
 
 	void Update () {
 		if(Input.GetMouseButtonDown(0)){
-//			Ray ray = Camera.main.ScreenPointToRay(Camera.main.transform.forward);
 			Ray ray = new Ray(transform.position, transform.forward);
 
 			RaycastHit hit = new RaycastHit();
@@ -19,8 +18,12 @@ public class RayController : MonoBehaviour {
 			if (Physics.Raycast(ray, out hit)) {
 				GameObject selectedObj = hit.collider.gameObject;             
 				print("name: " + selectedObj.name + selectedObj.transform.position);
-				Instantiate (gunfireEffect, hit.point, Quaternion.identity);
-				print ("おっぱい：" + hit.point);
+
+				//パーティクル発生
+				GameObject clone;
+				clone = (GameObject)Instantiate (gunfireEffect, hit.point, Quaternion.identity);
+				//パーティクル削除
+				Destroy (clone, .5f);
 			}
 		}
 	}
