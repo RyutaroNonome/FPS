@@ -7,9 +7,13 @@ public class Gun : MonoBehaviour {
 	public int bulletBox;
 	float coolTime;
 
+	AudioClip gunfireSound;
+	AudioSource audioSource;
+
 	// Use this for initialization
 	void Start () {
-	
+		gunfireSound = Resources.Load<AudioClip> ("Audio/fire");
+		audioSource = transform.GetComponent<AudioSource> ();
 	}
 	
 	// Update is called once per frame
@@ -39,5 +43,6 @@ public class Gun : MonoBehaviour {
 		Bullet -= 1;
 		Debug.Log ("残弾数：" + Bullet);
 		coolTime = 0.5f;
+		audioSource.PlayOneShot (gunfireSound);
 	}
 }
