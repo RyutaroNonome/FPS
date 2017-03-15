@@ -4,8 +4,7 @@ using System.Collections;
 public class RayController : MonoBehaviour {
 
 	//パーティクル
-	public GameObject gunfireEffect;
-	[SerializeField] GameObject usingGun;
+	[SerializeField] GameObject gunfireEffect;
 	[SerializeField] GameObject Muzzle;
 	Vector3 muzzlePoint;
 
