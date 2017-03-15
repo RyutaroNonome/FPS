@@ -6,9 +6,6 @@ public class RayController : MonoBehaviour {
 	//パーティクル
 	public GameObject gunfireEffect;
 
-	void start () {
-	}
-
 	void Update () {
 		if(Input.GetMouseButtonDown(0)){
 			Ray ray = new Ray(transform.position, transform.forward);

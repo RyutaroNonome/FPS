@@ -8,28 +8,20 @@ public class Gun : MonoBehaviour {
 	float coolTime;
 
 	//銃声
-	AudioClip gunfireSound;
+	[SerializeField] AudioClip gunfireSound;
 	AudioSource audioSource;
 
-	// Use this for initialization
 	void Start () {
-		gunfireSound = Resources.Load<AudioClip> ("Audio/fire");
 		audioSource = transform.GetComponent<AudioSource> ();
 	}
 	
-	// Update is called once per frame
 	void Update () {
 		coolTime -= Time.deltaTime;
 		if (Input.GetMouseButton(0) && Bullet != 0) {
-//			print("左ボタンが押されている");
 
 			//クールタイム機能
 			if (coolTime <= 0f){
 				Shoot();
-			}
-			if(Bullet == 0){
-				print ("なくなりました！");
-				return;
 			}
 		}
 
