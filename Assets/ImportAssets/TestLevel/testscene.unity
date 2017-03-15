@@ -2856,6 +2856,10 @@ Prefab:
       propertyPath: m_Name
       value: fire (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 189464, guid: cd96de0f6901946448bfa69a26d585a1, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cd96de0f6901946448bfa69a26d585a1, type: 2}
   m_IsPrefabParent: 0
@@ -11228,6 +11232,7 @@ MonoBehaviour:
   gunfireEffect: {fileID: 1000011122032182, guid: f3dd6de15728541639bc4d24f70f8b2d,
     type: 2}
   usingGun: {fileID: 393798631}
+  Muzzle: {fileID: 984279474}
 --- !u!4 &656846674 stripped
 Transform:
   m_PrefabParentObject: {fileID: 436598, guid: fabde6740a9e660448a07928610950ad, type: 2}
@@ -13594,7 +13599,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cd8d56469cf64654eaa21e15c6ae7c18, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cd8d56469cf64654eaa21e15c6ae7c18, type: 3}
@@ -14320,6 +14325,10 @@ Prefab:
       propertyPath: m_SquatSpeed
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
   m_IsPrefabParent: 0
@@ -14852,6 +14861,10 @@ Prefab:
     - target: {fileID: 458188, guid: cd96de0f6901946448bfa69a26d585a1, type: 2}
       propertyPath: m_RootOrder
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 189464, guid: cd96de0f6901946448bfa69a26d585a1, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cd96de0f6901946448bfa69a26d585a1, type: 2}
@@ -16611,6 +16624,34 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 980124368}
   m_Mesh: {fileID: 4300598, guid: 70bd327581f110b4a936db6df5f9ed54, type: 3}
+--- !u!1 &984279474
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 984279475}
+  m_Layer: 0
+  m_Name: Muzzle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &984279475
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 984279474}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.37, y: 0, z: 1.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 651941917}
+  m_RootOrder: 0
 --- !u!1 &996323582
 GameObject:
   m_ObjectHideFlags: 0
