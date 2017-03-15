@@ -5806,8 +5806,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Bullet: 10
-  bulletBox: 15
+  bulletBox: 150
   gunfireSound: {fileID: 8300000, guid: 8602b7d5cd15c1943a50aa53f171c8cf, type: 3}
+  reloadSound: {fileID: 8300000, guid: 3c5c1d4d7b9307c458890a4beb12e4ae, type: 3}
 --- !u!1 &416047501
 GameObject:
   m_ObjectHideFlags: 0
@@ -11231,7 +11232,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunfireEffect: {fileID: 1000011122032182, guid: f3dd6de15728541639bc4d24f70f8b2d,
     type: 2}
-  usingGun: {fileID: 393798631}
   Muzzle: {fileID: 984279474}
 --- !u!4 &656846674 stripped
 Transform:
@@ -13599,7 +13599,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cd8d56469cf64654eaa21e15c6ae7c18, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cd8d56469cf64654eaa21e15c6ae7c18, type: 3}
@@ -16651,7 +16651,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 651941917}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!1 &996323582
 GameObject:
   m_ObjectHideFlags: 0
@@ -28876,7 +28876,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1782367511
 RectTransform:
   m_ObjectHideFlags: 0
