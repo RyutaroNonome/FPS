@@ -3,6 +3,9 @@ using System.Collections;
 
 public class RayController : MonoBehaviour {
 
+	//パーティクル
+	public GameObject gunfireEffect;
+
 	void start () {
 	}
 
@@ -16,6 +19,8 @@ public class RayController : MonoBehaviour {
 			if (Physics.Raycast(ray, out hit)) {
 				GameObject selectedObj = hit.collider.gameObject;             
 				print("name: " + selectedObj.name + selectedObj.transform.position);
+				Instantiate (gunfireEffect, hit.point, Quaternion.identity);
+				print ("おっぱい：" + hit.point);
 			}
 		}
 	}

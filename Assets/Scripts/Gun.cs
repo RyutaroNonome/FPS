@@ -7,6 +7,7 @@ public class Gun : MonoBehaviour {
 	public int bulletBox;
 	float coolTime;
 
+	//銃声
 	AudioClip gunfireSound;
 	AudioSource audioSource;
 
