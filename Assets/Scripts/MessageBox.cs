@@ -27,6 +27,6 @@ public class MessageBox : MonoBehaviour {
 		timeText.text = "Time：" + Time.time.ToString("f1") + "s";
 		ptText.text = " Pt：" + rayController.hitPoint;
 		bulletboxText.text = "BulletBox：" + gun.bulletBox;
-		bulletText.text = "Bullet：" + gun.residualBullet + "/" + test;
+		bulletText.text = "Bullet：" + gun.residualBullet + "/" + gun.bullet;
 	}
 }

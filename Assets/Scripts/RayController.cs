@@ -101,7 +101,6 @@ public class RayController : MonoBehaviour {
 		if(0 <= dis && dis <= 0.16){
 			hitPoint = headshotPointCritical;
 		}
-
 		print ("ヒットポイント：" + hitPoint + ", " + "dis：" + dis + ", " + "被弾位置：" + _hit.point + ", " + "頭中心位置：" + headCenterPoint);
 	}
 }
