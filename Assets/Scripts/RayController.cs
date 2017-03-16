@@ -28,7 +28,7 @@ public class RayController : MonoBehaviour {
 	int hitPoint;
 	[SerializeField] int headshotPointCritical;
 	[SerializeField] int headshotPointMiddle;
-	[SerializeField] int headshotPointEdge;
+//	[SerializeField] int headshotPointEdge;
 	[SerializeField] int standardPoint;
 	private float dis;
 
@@ -56,9 +56,9 @@ public class RayController : MonoBehaviour {
 			if (Physics.Raycast(ray, out _hit)) {
 				GameObject selectedObj = _hit.collider.gameObject;
 				if (selectedObj.name == "Enemy"){
-					remainingEnemylife -= 1;
 					DecideHitPoint ();
-					print ("敵体力残り：" + remainingEnemylife);
+					remainingEnemylife -= hitPoint;
+//					print ("敵体力残り：" + remainingEnemylife);
 					if(remainingEnemylife == 0){
 						anim.SetBool ("isFall", true);
 						enemyrecoveryTime = 2f;
@@ -92,19 +92,16 @@ public class RayController : MonoBehaviour {
 		//弾丸が当たった場所と頭中心との距離をdistancetoHeadに代入
 		dis = Vector3.Distance (_hit.point, headCenterPoint);
 
-		if(0.2 < dis){
+		if(0.3 < dis){
 			hitPoint = standardPoint;
 		}
-		if(0.08 < dis || dis <= 0.2){
-			hitPoint = headshotPointEdge;
-		}
-		if(0 < dis || dis <= 0.08){
+		if(0.16 < dis && dis <= 0.3){
 			hitPoint = headshotPointMiddle;
 		}
-		if(dis == 0){
+		if(0 <= dis && dis <= 0.16){
 			hitPoint = headshotPointCritical;
 		}
 
-		print (hitPoint);
+		print ("ヒットポイント：" + hitPoint + ", " + "dis：" + dis + ", " + "被弾位置：" + _hit.point + ", " + "頭中心位置：" + headCenterPoint);
 	}
 }
