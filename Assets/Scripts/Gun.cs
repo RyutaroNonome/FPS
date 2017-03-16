@@ -1,5 +1,7 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class Gun : MonoBehaviour {
 
@@ -17,13 +19,26 @@ public class Gun : MonoBehaviour {
 	[SerializeField] AudioClip gunfireSound, reloadSound;
 	AudioSource audioSource;
 
+	//スナイパー機能
+	[SerializeField] GameObject scopeImage;
+	bool isSniper = false;
+	private Vector3 scopePosition;
+	//スコープ倍率
+	[SerializeField] float magnification;
+
 	void Start () {
 		//残弾数 = 初期弾数
 		residualBullet = bullet;
 		audioSource = transform.GetComponent<AudioSource> ();
+
+		//スナイパー機能
+		scopeImage.SetActive(false);
 	}
 	
 	void Update () {
+
+		Snipe ();
+
 		//クーリング
 		coolTime -= Time.deltaTime;
 
@@ -59,5 +74,25 @@ public class Gun : MonoBehaviour {
 		residualBullet += reloadBullet;
 		//リロードすると弾倉内弾数が減る
 		bulletBox -= reloadBullet;		
+	}
+
+	//スナイパー機能
+	void Snipe () {
+		if (Input.GetMouseButtonDown (1)) {
+//			scopePosition = this.transform.position;
+			if (!isSniper) {
+				print ("スナイパーモード");
+				Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, Camera.main.transform.position.z + 7.0f);
+				scopeImage.transform.localScale = new Vector3 (magnification, magnification, magnification);
+				scopeImage.SetActive (true);
+				isSniper = true;
+			} else {
+				print ("notスナイパーモード");
+				Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, Camera.main.transform.position.z - 7.0f);
+				scopeImage.transform.localScale = new Vector3 (0, 0, 0);
+				scopeImage.SetActive (false);
+				isSniper = false;
+			}
+		}
 	}
 }
