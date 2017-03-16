@@ -28,7 +28,6 @@ public class RayController : MonoBehaviour {
 	public int hitPoint;
 	[SerializeField] int headshotPointCritical;
 	[SerializeField] int headshotPointMiddle;
-//	[SerializeField] int headshotPointEdge;
 	[SerializeField] int standardPoint;
 	private float dis;
 
@@ -58,7 +57,6 @@ public class RayController : MonoBehaviour {
 				if (selectedObj.name == "Enemy"){
 					DecideHitPoint ();
 					remainingEnemylife -= hitPoint;
-//					print ("敵体力残り：" + remainingEnemylife);
 					if(remainingEnemylife == 0){
 						anim.SetBool ("isFall", true);
 						enemyrecoveryTime = 2f;
@@ -68,11 +66,7 @@ public class RayController : MonoBehaviour {
 						return;
 					}
 				}
-				//ヒットしたオブジェクトの情報
-//				print("name: " + selectedObj.name + selectedObj.transform.position);
-
 				cloneHitEffect = (GameObject)Instantiate (gunfireEffect, _hit.point, Quaternion.identity);
-
 				//パーティクル削除
 				Destroy (cloneHitEffect, .5f);
 			}
@@ -94,13 +88,10 @@ public class RayController : MonoBehaviour {
 
 		if(0.3 < dis){
 			hitPoint = standardPoint;
-		}
-		if(0.16 < dis && dis <= 0.3){
+		} else if (0.16 < dis && dis <= 0.3){
 			hitPoint = headshotPointMiddle;
-		}
-		if(0 <= dis && dis <= 0.16){
+		} else if (0 <= dis && dis <= 0.16){
 			hitPoint = headshotPointCritical;
 		}
-		print ("ヒットポイント：" + hitPoint + ", " + "dis：" + dis + ", " + "被弾位置：" + _hit.point + ", " + "頭中心位置：" + headCenterPoint);
 	}
 }

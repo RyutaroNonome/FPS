@@ -81,13 +81,11 @@ public class Gun : MonoBehaviour {
 		if (Input.GetMouseButtonDown (1)) {
 //			scopePosition = this.transform.position;
 			if (!isSniper) {
-				print ("スナイパーモード");
 				Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, Camera.main.transform.position.z + 7.0f);
 				scopeImage.transform.localScale = new Vector3 (magnification, magnification, magnification);
 				scopeImage.SetActive (true);
 				isSniper = true;
 			} else {
-				print ("notスナイパーモード");
 				Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, Camera.main.transform.position.z - 7.0f);
 				scopeImage.transform.localScale = new Vector3 (0, 0, 0);
 				scopeImage.SetActive (false);
