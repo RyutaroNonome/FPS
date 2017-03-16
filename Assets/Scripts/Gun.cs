@@ -11,7 +11,7 @@ public class Gun : MonoBehaviour {
 	float coolTime;
 
 	//残弾数・リロードする弾数
-	int residualBullet, reloadBullet;
+	public int residualBullet, reloadBullet;
 
 	//銃声・リロード音
 	[SerializeField] AudioClip gunfireSound, reloadSound;

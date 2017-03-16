@@ -25,7 +25,7 @@ public class RayController : MonoBehaviour {
 	[SerializeField] GameObject headCenter;
 	Vector3 headCenterPoint;
 	//ヒットポイント設定
-	int hitPoint;
+	public int hitPoint;
 	[SerializeField] int headshotPointCritical;
 	[SerializeField] int headshotPointMiddle;
 //	[SerializeField] int headshotPointEdge;
