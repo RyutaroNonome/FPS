@@ -53,7 +53,6 @@ public class RayController : MonoBehaviour {
 			Destroy (cloneMuzzleEffect, .5f);
 				
 			if (Physics.Raycast(ray, out _hit)) {
-				GameObject selectedObj = _hit.collider.gameObject;
 				TargetController target = _hit.transform.GetComponent<TargetController> ();
 				if (target != null){
 					targetController.DecideHitPoint ();
