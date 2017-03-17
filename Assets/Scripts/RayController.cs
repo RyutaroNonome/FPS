@@ -51,14 +51,14 @@ public class RayController : MonoBehaviour {
 
 			//パーティクル削除
 			Destroy (cloneMuzzleEffect, .5f);
-
+				
 			if (Physics.Raycast(ray, out _hit)) {
 				GameObject selectedObj = _hit.collider.gameObject;
-				if (selectedObj.name == "Enemy"){
-					
+				TargetController target = _hit.transform.GetComponent<TargetController> ();
+				if (target != null){
 					targetController.DecideHitPoint ();
 					remainingEnemylife -= hitPoint;
-					if(remainingEnemylife == 0){
+					if(remainingEnemylife <= 0){
 						anim.SetBool ("isFall", true);
 						enemyrecoveryTime = 2f;
 						getupBool = true;
