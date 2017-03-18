@@ -24,7 +24,8 @@ public class Gun : MonoBehaviour {
 	bool isSniper = false;
 	private Vector3 scopePosition;
 	//スコープ倍率
-	[SerializeField] float magnification;
+	[SerializeField] private float magnification;
+	[SerializeField] private Camera camera;
 
 	void Start () {
 		//残弾数 = 初期弾数
@@ -79,15 +80,12 @@ public class Gun : MonoBehaviour {
 	//スナイパー機能
 	void Snipe () {
 		if (Input.GetMouseButtonDown (1)) {
-//			scopePosition = this.transform.position;
 			if (!isSniper) {
-				Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, Camera.main.transform.position.z + 7.0f);
-				scopeImage.transform.localScale = new Vector3 (magnification, magnification, magnification);
+				this.camera.fieldOfView -= this.magnification;
 				scopeImage.SetActive (true);
 				isSniper = true;
 			} else {
-				Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, Camera.main.transform.position.z - 7.0f);
-				scopeImage.transform.localScale = new Vector3 (0, 0, 0);
+				this.camera.ResetFieldOfView ();
 				scopeImage.SetActive (false);
 				isSniper = false;
 			}

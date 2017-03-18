@@ -5812,7 +5812,8 @@ MonoBehaviour:
   gunfireSound: {fileID: 8300000, guid: 8602b7d5cd15c1943a50aa53f171c8cf, type: 3}
   reloadSound: {fileID: 8300000, guid: 3c5c1d4d7b9307c458890a4beb12e4ae, type: 3}
   scopeImage: {fileID: 1581424005}
-  magnification: 16
+  magnification: 50
+  camera: {fileID: 651941921}
 --- !u!1 &416047501
 GameObject:
   m_ObjectHideFlags: 0
@@ -11431,13 +11432,20 @@ MonoBehaviour:
   gunfireEffect: {fileID: 1000011122032182, guid: f3dd6de15728541639bc4d24f70f8b2d,
     type: 2}
   Muzzle: {fileID: 984279474}
-  anim: {fileID: 659177602}
   firstEnemylife: 9
   headCenter: {fileID: 444952752}
+  headCenterPoint: {x: 0, y: 0, z: 0}
   hitPoint: 0
   headshotPointCritical: 5
   headshotPointMiddle: 3
   standardPoint: 1
+  dis: 0
+  targetController: {fileID: 659177604}
+--- !u!20 &651941921 stripped
+Camera:
+  m_PrefabParentObject: {fileID: 2000000, guid: 5e9e851c0e142814dac026a256ba2ac0,
+    type: 2}
+  m_PrefabInternal: {fileID: 858362279}
 --- !u!4 &656846674 stripped
 Transform:
   m_PrefabParentObject: {fileID: 436598, guid: fabde6740a9e660448a07928610950ad, type: 2}
@@ -11452,6 +11460,7 @@ GameObject:
   - 4: {fileID: 659177601}
   - 95: {fileID: 659177602}
   - 65: {fileID: 659177603}
+  - 114: {fileID: 659177604}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -11503,6 +11512,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.7, y: 1.7, z: 0.2}
   m_Center: {x: 0, y: 0.9, z: 0}
+--- !u!114 &659177604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 659177600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 661de9e68fdcf47c3a9991fb5a358198, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rayController: {fileID: 651941918}
+  anim: {fileID: 659177602}
+  enemyrecoveryTime: 0
+  getupBool: 0
 --- !u!1001 &659802880
 Prefab:
   m_ObjectHideFlags: 0
@@ -24984,7 +25008,7 @@ RectTransform:
   m_GameObject: {fileID: 1581424005}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 16, y: 16, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 1839676370}

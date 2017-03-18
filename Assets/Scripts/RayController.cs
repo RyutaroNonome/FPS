@@ -10,12 +10,7 @@ public class RayController : MonoBehaviour {
 	Vector3 muzzlePoint;
 	//パーティクル発生
 	GameObject cloneHitEffect, cloneMuzzleEffect;
-	//アニメーター設定
-	[SerializeField] Animator anim;
-	//敵が起き上がるまでの時間
-	float enemyrecoveryTime;
-	//敵敵が起き上がるためのBool
-	bool getupBool = false;
+
 
 	//敵の初期体力
 	[SerializeField] int firstEnemylife;
@@ -42,7 +37,7 @@ public class RayController : MonoBehaviour {
 	void Update () {
 
 		if(Input.GetMouseButtonDown(0)){
-			anim.SetBool ("isGetup" ,false);
+			targetController.GetUpFalse ();
 			Ray ray = new Ray(transform.position, transform.forward);
 
 			_hit = new RaycastHit();
@@ -58,9 +53,9 @@ public class RayController : MonoBehaviour {
 					targetController.DecideHitPoint ();
 					remainingEnemylife -= hitPoint;
 					if(remainingEnemylife <= 0){
-						anim.SetBool ("isFall", true);
-						enemyrecoveryTime = 2f;
-						getupBool = true;
+						targetController.FallDownTrue ();
+						targetController.enemyrecoveryTime = 2f;
+						targetController.getupBool = true;
 						remainingEnemylife += firstEnemylife;
 						return;
 					}
@@ -70,13 +65,7 @@ public class RayController : MonoBehaviour {
 				Destroy (cloneHitEffect, .5f);
 			}
 		}
-		if (getupBool) {
-			enemyrecoveryTime -= Time.deltaTime;
-			if(enemyrecoveryTime <= 0f){
-				anim.SetBool ("isGetup" ,true);
-				anim.SetBool ("isFall" ,false);
-				getupBool = false;
-			}
-		}
+
+		targetController.RecoveryGetUp ();
 	}
 }
