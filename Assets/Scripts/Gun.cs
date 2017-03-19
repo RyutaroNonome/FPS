@@ -1,5 +1,7 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class Gun : MonoBehaviour {
 
@@ -11,19 +13,33 @@ public class Gun : MonoBehaviour {
 	float coolTime;
 
 	//残弾数・リロードする弾数
-	int residualBullet, reloadBullet;
+	public int residualBullet, reloadBullet;
 
 	//銃声・リロード音
 	[SerializeField] AudioClip gunfireSound, reloadSound;
 	AudioSource audioSource;
 
+	//スナイパー機能
+	[SerializeField] GameObject scopeImage;
+	bool isSniper = false;
+	private Vector3 scopePosition;
+	//スコープ倍率
+	[SerializeField] private float magnification;
+	[SerializeField] private Camera camera;
+
 	void Start () {
 		//残弾数 = 初期弾数
 		residualBullet = bullet;
 		audioSource = transform.GetComponent<AudioSource> ();
+
+		//スナイパー機能
+		scopeImage.SetActive(false);
 	}
 	
 	void Update () {
+
+		Snipe ();
+
 		//クーリング
 		coolTime -= Time.deltaTime;
 
@@ -59,5 +75,20 @@ public class Gun : MonoBehaviour {
 		residualBullet += reloadBullet;
 		//リロードすると弾倉内弾数が減る
 		bulletBox -= reloadBullet;		
+	}
+
+	//スナイパー機能
+	void Snipe () {
+		if (Input.GetMouseButtonDown (1)) {
+			if (!isSniper) {
+				this.camera.fieldOfView -= this.magnification;
+				scopeImage.SetActive (true);
+				isSniper = true;
+			} else {
+				this.camera.ResetFieldOfView ();
+				scopeImage.SetActive (false);
+				isSniper = false;
+			}
+		}
 	}
 }
