@@ -52,6 +52,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private bool m_Jumping;
         private AudioSource m_AudioSource;
 
+		float t;
+
         // Use this for initialization
         private void Start()
         {
@@ -145,7 +147,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
 			//しゃがむ機能
 			if (Input.GetKey(KeyCode.C)) {
-				FirstPersonCharacter.transform.position = new Vector3(transform.position.x, 4.5f, transform.position.z);
+//				FirstPersonCharacter.transform.position = new Vector3(transform.position.x, 4.5f, transform.position.z);
+				t += Time.deltaTime;
+				FirstPersonCharacter.transform.position = new Vector3(transform.position.x, Mathf.Lerp(this.transform.position.y, 4.5f, Mathf.Sin(t)), transform.position.z);
 //				GetInput(out speed);
 			}
         }
